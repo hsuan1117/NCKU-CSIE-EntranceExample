@@ -27,7 +27,7 @@ int main() {
     zmq_connect(socket_producer, addr_producer_consumer);
     printf("[Consumer] Connecting to Collector...\n");
     int s = zmq_connect(socket_collecotor, addr_consumer_collector);
-    
+
     // infinite loop for Work()
     while(1) {
         struct json_object* work;
@@ -40,6 +40,7 @@ int main() {
         // send message to result collector
         const char* msg = json_object_to_json_string(work);
         zmq_send(socket_collecotor, msg, strlen(msg), 0);
+        printf("[Consumer] JSON: %s \n",json_object_to_json_string(work));
 
         // free the allocated memory
         free(buffer);

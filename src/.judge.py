@@ -19,6 +19,7 @@ if __name__ == "__main__":
         message = message.split()
 
         if len(message) == 2 and message[1] == "s":  # start
+            # 在這邊傳送人是 Producer ，所以回傳訊息給他
             ID, info = [str(n) for n in message]
             socket.send_string(f"{para['word']}")
         elif len(message) == 3 and message[1] == "e":  # end
